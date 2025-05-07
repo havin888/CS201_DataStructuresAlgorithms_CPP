@@ -4,6 +4,8 @@
 
 #include "MinHeap.h"
 
+#include <limits>
+
 void MinHeap::percolateDown(int no) {
     int left, right;
     left = 2 * no + 1;
@@ -40,6 +42,21 @@ void MinHeap::update(int k, int newValue) {
     } else {
         percolateUp(k);
     }
+}
+bool MinHeap::isLargestLeftMost(){ //Q13P
+    int largest = std::numeric_limits<int>::min();
+    for(int i=0; i < N; i++)
+    {
+        if(array[i].getData() > largest)
+            largest = array[i].getData();
+    };
+    int height = 0;
+    while ((1 << height) <= N) {
+        height++;
+    }
+    height--;
+    int leftmostIndex = (1 << height) - 1;
+    return array[leftmostIndex].getData() == largest;
 }
 
 MinHeap::MinHeap(int N) : Heap(N) {

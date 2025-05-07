@@ -15,6 +15,7 @@ protected:
 public:
     explicit MinHeap(int N);
     void update(int k, int newValue) override;
+    bool isLargestLeftMost();
 };
 
 
