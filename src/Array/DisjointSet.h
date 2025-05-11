@@ -19,6 +19,10 @@ public:
     int findSetRecursive(int index);
     int findSetIterative(int index);
     void unionOfSets(int index1, int index2);
+    int* grandChildren(int index);
+    int numberOfTriplets();
+    int* getSetWithIndex(int index);
+    int* ascendants(int index);
 };
 
 
