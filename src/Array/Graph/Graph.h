@@ -23,6 +23,7 @@ namespace array{
         Path* dijkstra(int source);
         int** floydWarshall();
         void prim();
+        bool isStarGraph();
     protected:
         void depthFirstSearch(bool* visited, int fromNode) override;
         void breadthFirstSearch(bool* visited, int startNode) override;

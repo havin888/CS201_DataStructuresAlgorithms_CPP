@@ -170,5 +170,24 @@ namespace list {
             }
         }
     }
-
+    Graph* Graph::inverseGraph() { //Q25P
+        Graph* complement = new Graph(vertexCount);
+        for (int u = 0; u < vertexCount; ++u) {
+            for (int v = u + 1; v < vertexCount; ++v) {
+                bool hasEdge = false;
+                Edge* head = edges[u].getHead();
+                while(head != nullptr) {
+                    if(head->getTo() == v) {
+                        hasEdge = true;
+                        break;
+                    };
+                    head = head->getNext();
+                };
+                if (!hasEdge) {
+                    complement->addEdge(u, v);
+                }
+            }
+        }
+        return complement;
+    };
 }

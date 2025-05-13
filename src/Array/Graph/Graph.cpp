@@ -180,5 +180,23 @@ namespace array{
             }
         }
     }
+    bool Graph::isStarGraph() { //Q24P
+        int centerCount = 0;
+        int leafCount = 0;
+        for (int i = 0; i < vertexCount; ++i) {
+            int degree = 0;
+            for (int j = 0; j < vertexCount; ++j) {
+                degree += edges[i][j];
+            }
 
+            if (degree == vertexCount - 1) {
+                centerCount++;
+            } else if (degree == 1) {
+                leafCount++;
+            } else {
+                return false;
+            }
+        }
+        return (centerCount == 1 && leafCount == vertexCount - 1);
+    }
 }
