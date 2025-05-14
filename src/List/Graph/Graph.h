@@ -23,6 +23,7 @@ namespace list {
         Path* bellmanFord(int source);
         Path* dijkstra(int source);
         void prim();
+        Graph merge(const Graph & g2, int v);
         Graph* inverseGraph();
     protected:
         void depthFirstSearch(bool* visited, int fromNode) override;

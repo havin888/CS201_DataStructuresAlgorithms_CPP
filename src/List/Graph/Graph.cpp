@@ -170,6 +170,46 @@ namespace list {
             }
         }
     }
+    Graph Graph::merge(const Graph &g2, int v) { //Q23P
+        Graph result = Graph(v);
+        for (int i = 0; i < v; i++) {
+            Edge* tmp1 = edges[i].getHead();
+            while (tmp1 != nullptr) {
+                Edge* tmp2 = g2.edges[i].getHead();
+                bool found = false;
+                while (tmp2 != nullptr) {
+                    if (tmp1->getTo() == tmp2->getTo()) {
+                        found = true;
+                        break;
+                    }
+                    tmp2 = tmp2->getNext();
+                }
+                if (!found) {
+                    result.addEdge(tmp1->getFrom(), tmp1->getTo(), tmp1->getWeight());
+                } else {
+                    result.addEdge(tmp1->getFrom(), tmp1->getTo(), tmp1->getWeight() + tmp2->getWeight());
+                }
+                tmp1 = tmp1->getNext();
+            }
+            Edge* tmp2 = g2.edges[i].getHead();
+            while (tmp2 != nullptr) {
+                tmp1 = edges[i].getHead();
+                bool found = false;
+                while (tmp1 != nullptr) {
+                    if (tmp1->getTo() == tmp2->getTo()) {
+                        found = true;
+                        break;
+                    }
+                    tmp1 = tmp1->getNext();
+                }
+                if (!found) {
+                    result.addEdge(tmp2->getFrom(), tmp2->getTo(), tmp2->getWeight());
+                }
+                tmp2 = tmp2->getNext();
+            }
+        }
+        return result;
+    }
     Graph* Graph::inverseGraph() { //Q25P
         Graph* complement = new Graph(vertexCount);
         for (int u = 0; u < vertexCount; ++u) {

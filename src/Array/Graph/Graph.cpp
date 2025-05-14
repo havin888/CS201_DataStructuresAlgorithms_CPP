@@ -167,11 +167,11 @@ namespace array{
         for (int i = 0; i < vertexCount; i++){
             heap.insert(HeapNode(paths[i].getDistance(), i));
         }
-        while (!heap.isEmpty()){
+        while (!heap.isEmpty()) {
             HeapNode node = heap.deleteTop();
             int fromNode = node.getName();
-            for (int toNode = 0; toNode < vertexCount; toNode++){
-                if (paths[toNode].getDistance() > edges[fromNode][toNode]){
+            for (int toNode = 0; toNode < vertexCount; toNode++) {
+                if (paths[toNode].getDistance() > edges[fromNode][toNode]) {
                     int position = heap.search(toNode);
                     heap.update(position, edges[fromNode][toNode]);
                     paths[toNode].setDistance(edges[fromNode][toNode]);
@@ -180,6 +180,18 @@ namespace array{
             }
         }
     }
+    int Graph::lengthOfCircle() { //Q22
+        int length = 0;
+        for(int i=0; i<vertexCount;++i) {
+            for(int j=0; j<vertexCount;++j) {
+                    length += edges[i][j];
+            }
+        }
+        return length;
+    }
+
+
+
     bool Graph::isStarGraph() { //Q24P
         int centerCount = 0;
         int leafCount = 0;
